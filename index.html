@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Родинне Різдво</title>
+<meta name="description" content="Родинне Різдво: Різдво у колі рідних — велика родина України. Прем'єра шоу 24 грудня на 1+1. Проєкт Фундації Катерини Осадчої.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Родинне Різдво">
+<meta property="og:description" content="Прем'єра шоу 24 грудня на 1+1. Різдво у колі рідних — велика родина України.">
+<meta property="og:image" content="https://rodynnerizdvo.com/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2a0204">
+<link rel="icon" href="assets/star.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red-deep: #2a0204;
+    --red: #800c10;
+    --gold: #f5c35a;
+    --gold-soft: #e9b763;
+    --cream: #fff4e3;
+    --muted: rgba(255, 244, 227, .66);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { background: var(--red-deep); }
+  body {
+    min-height: 100vh; min-height: 100svh;
+    color: var(--cream);
+    font: 400 16px/1.55 Manrope, system-ui, sans-serif;
+    background: radial-gradient(90vmax 90vmax at 68% 45%, #8a1014 0%, #5a0709 38%, var(--red-deep) 75%) fixed;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  #dust { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100vh; min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-areas: "text star";
+    align-items: center;
+    max-width: 1440px; margin: 0 auto;
+    padding: clamp(24px, 4vw, 56px);
+    gap: clamp(16px, 3vw, 48px);
+  }
+  .text { grid-area: text; display: flex; flex-direction: column; gap: clamp(22px, 3.2vh, 36px); max-width: 540px; }
+  .stage { grid-area: star; position: relative; }
+
+  h1 { line-height: 0; }
+  h1 img { width: min(100%, 470px); height: auto; }
+  .theme { font: italic 500 clamp(22px, 2.2vw, 28px)/1.25 "Cormorant Garamond", serif; color: var(--cream); max-width: 26ch; }
+
+  .premiere { border-top: 1px solid rgba(245, 195, 90, .35); padding-top: clamp(18px, 2.6vh, 28px); }
+  .premiere .label { font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 .35em; margin-top: 6px; }
+  .date b { font: italic 600 clamp(56px, 6.4vw, 92px)/1 "Cormorant Garamond", serif; color: var(--gold); letter-spacing: -.01em; }
+  .date span { font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
+  .countdown { margin-top: 8px; color: var(--muted); font-size: 15px; }
+  .countdown strong { color: var(--cream); font-weight: 600; }
+
+  .book {
+    display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: center;
+    text-decoration: none; padding: 14px 18px 14px 14px;
+    border: 1px solid rgba(245, 195, 90, .35); border-radius: 14px;
+    background: rgba(42, 2, 4, .35);
+    transition: border-color .3s, background .3s, transform .3s;
+  }
+  .book:hover, .book:focus-visible { border-color: var(--gold); background: rgba(42, 2, 4, .6); transform: translateY(-2px); }
+  .book img { grid-row: span 2; width: 44px; height: 44px; }
+  .book small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-soft); font-weight: 600; }
+  .book span { font-size: 15px; }
+  .book span::after { content: " →"; color: var(--gold); transition: margin .3s; }
+  .book:hover span::after { margin-left: 4px; }
+
+  footer { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; font-size: 14px; color: var(--muted); }
+  footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  footer a { text-decoration: none; border-bottom: 1px solid rgba(255, 244, 227, .25); transition: color .2s, border-color .2s; }
+  footer a:hover, footer a:focus-visible { color: var(--cream); border-color: var(--gold); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+  #spin { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: grab; touch-action: none; border-radius: 50%; }
+  #spin:active { cursor: grabbing; }
+  #star { display: block; width: 100%; aspect-ratio: 1 / 1.02; }
+  .caption { text-align: center; margin-top: -2%; min-height: 3.2em; }
+  .caption .ch { font: italic 500 19px/1.3 "Cormorant Garamond", serif; transition: opacity .6s; }
+  .caption .credit { font-size: 12px; color: var(--muted); letter-spacing: .04em; margin-top: 2px; }
+  .hint { position: absolute; top: 2%; right: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: opacity 1s; }
+
+  /* entrance: text rises in, the calligraphy is "written" left to right */
+  .rise { opacity: 0; transform: translateY(14px); animation: rise 1s cubic-bezier(.2, .7, .2, 1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  h1 img {
+    -webkit-mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 240% 100% no-repeat;
+            mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 240% 100% no-repeat;
+    animation: write 2.6s .5s cubic-bezier(.45, .1, .3, 1) forwards;
+  }
+  @keyframes write { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
+  .caption p { text-wrap: balance; }
+  @media (max-width: 880px) {
+    /* phone: logo, star, then the premiere date on the first screen */
+    .page { display: flex; flex-direction: column; gap: 20px; padding-top: 28px; }
+    .text { display: contents; }
+    h1 { order: 2; } .stage { order: 3; margin: -8px -8px 0; }
+    .premiere { order: 4; } .theme { order: 5; } .book { order: 6; } footer { order: 7; }
+    h1 img { width: min(72%, 330px); }
+    .hint { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+    h1 img { animation: none; -webkit-mask: none; mask: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="dust" aria-hidden="true"></canvas>
+
+<main class="page">
+  <div class="stage">
+    <button id="spin" type="button" aria-label="Крутнути зірку і показати наступну ілюстрацію з книги">
+      <canvas id="star"></canvas>
+    </button>
+    <p class="hint" aria-hidden="true">Крутніть зірку</p>
+    <div class="caption" aria-live="polite">
+      <p class="ch" id="chapter">&nbsp;</p>
+      <p class="credit">Ілюстрації Юлії Лишанець з книги «Родинне Різдво для всіх»</p>
+    </div>
+  </div>
+
+  <div class="text">
+    <h1 class="rise" style="animation-delay:.25s"><img src="assets/logo.png" alt="Родинне Різдво" width="1400" height="883"></h1>
+    <p class="theme rise" style="animation-delay:.9s">Різдво у колі рідних — велика родина України</p>
+
+    <section class="premiere rise" style="animation-delay:1.2s" aria-label="Прем'єра шоу">
+      <p class="label">Прем'єра шоу</p>
+      <p class="date"><b>24 грудня</b><span>на 1+1</span></p>
+      <p class="countdown" id="countdown"></p>
+    </section>
+
+    <a class="book rise" style="animation-delay:1.45s" href="https://stretovych.com.ua/product/rodynne-rizdvo/" target="_blank" rel="noopener">
+      <img src="assets/star.webp" alt="" width="44" height="44">
+      <small>Книга вже у продажу</small>
+      <span>«Родинне Різдво для всіх» · 120+ традицій</span>
+    </a>
+
+    <footer class="rise" style="animation-delay:1.7s">
+      <p>Проєкт Фундації Катерини Осадчої</p>
+      <nav aria-label="Посилання">
+        <a href="https://www.youtube.com/@RodynneRizdvo" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/osadcha.foundation/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:rodynnerizdvo@gmail.com">rodynnerizdvo@gmail.com</a>
+      </nav>
+    </footer>
+  </div>
+</main>
+
+<script>
+(() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TAU = Math.PI * 2;
+
+  /* ---------- countdown to 24 Dec, Kyiv time (UTC+2 in winter) ---------- */
+  const plural = (n, one, few, many) => {
+    const m10 = n % 10, m100 = n % 100;
+    return m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? few : many;
+  };
+  console.assert(plural(1, 'а', 'б', 'в') === 'а' && plural(3, 'а', 'б', 'в') === 'б' && plural(11, 'а', 'б', 'в') === 'в' && plural(22, 'а', 'б', 'в') === 'б' && plural(40, 'а', 'б', 'в') === 'в');
+  const now = new Date();
+  const kyivToday = Date.UTC(...new Date(now.getTime() + 2 * 36e5).toISOString().slice(0, 10).split('-').map((v, i) => i === 1 ? v - 1 : +v));
+  const days = Math.round((Date.UTC(now.getUTCFullYear(), 11, 24) - kyivToday) / 864e5);
+  const cd = document.getElementById('countdown');
+  if (days > 0) cd.innerHTML = `До прем'єри ${plural(days, 'залишився', 'залишилось', 'залишилось')} <strong>${days} ${plural(days, 'день', 'дні', 'днів')}</strong>`;
+  else if (days === 0) cd.innerHTML = '<strong>Сьогодні ввечері на 1+1</strong>';
+  else cd.remove();
+
+  /* ---------- assets ---------- */
+  const CHAPTERS = ['I · Чому Різдво настільки важливе?', 'II · Як раніше святкували Різдво', 'III · Від зернини до хлібини', 'IV · Святковий стіл', 'V · Атрибути Різдва', 'VI · Колядки і вертеп', 'VII · Українське Різдво у світовому контексті', 'VIII · Як прикрашати і що дарувати', 'IX · Різдво як привід стати ближче', 'X · Конструктор свята'];
+  const ills = CHAPTERS.map((_, i) => { const im = new Image(); im.decoding = 'async'; im.src = `assets/ill-${String(i + 1).padStart(2, '0')}.jpg`; return im; });
+  const hub = new Image(); hub.src = 'assets/star.webp';
+  const chapterEl = document.getElementById('chapter');
+  const ready = im => im.complete && im.naturalWidth > 0;
+
+  /* ---------- gold sparkle sprite (four-point glint like the deck) ---------- */
+  const sprite = document.createElement('canvas'); sprite.width = sprite.height = 64;
+  { const g = sprite.getContext('2d'), c = 32;
+    const rg = g.createRadialGradient(c, c, 0, c, c, 32);
+    rg.addColorStop(0, 'rgba(255,240,200,1)'); rg.addColorStop(.12, 'rgba(255,205,110,.85)'); rg.addColorStop(.4, 'rgba(255,160,40,.18)'); rg.addColorStop(1, 'rgba(255,140,20,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, 64, 64);
+    g.fillStyle = 'rgba(255,236,190,.9)';
+    for (const r of [0, Math.PI / 2]) { g.save(); g.translate(c, c); g.rotate(r); g.beginPath(); g.moveTo(-31, 0); g.quadraticCurveTo(0, 1.6, 31, 0); g.quadraticCurveTo(0, -1.6, -31, 0); g.fill(); g.restore(); }
+  }
+
+  /* ---------- canvases ---------- */
+  const star = document.getElementById('star'), sx = star.getContext('2d');
+  const dust = document.getElementById('dust'), dx = dust.getContext('2d');
+  let dpr = 1, R = 100, cx = 0, cy = 0, starRect;
+  function resize() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    starRect = star.getBoundingClientRect();
+    star.width = Math.round(starRect.width * dpr); star.height = Math.round(starRect.height * dpr);
+    cx = star.width / 2; cy = star.height * .43;
+    R = Math.min(star.width * .45, star.height * .4);
+    dust.width = Math.round(innerWidth * dpr); dust.height = Math.round(innerHeight * dpr);
+  }
+  addEventListener('resize', resize); resize();
+  addEventListener('scroll', () => { starRect = star.getBoundingClientRect(); }, { passive: true });
+
+  /* ---------- star geometry: 8 slender rays, like the carollers' star ---------- */
+  const RAYS = 8, INNER = .42, A = Math.PI / RAYS;
+  const grow = new Array(RAYS).fill(RM ? 1 : 0);
+  function starPath(ctx, r) {
+    ctx.beginPath();
+    for (let i = 0; i < RAYS; i++) {
+      const a = i * 2 * A - Math.PI / 2, g = (grow[i] + grow[(i + 1) % RAYS]) / 2;
+      ctx.lineTo(Math.cos(a) * r * grow[i], Math.sin(a) * r * grow[i]);
+      ctx.lineTo(Math.cos(a + A) * r * INNER * g, Math.sin(a + A) * r * INNER * g);
+    }
+    ctx.closePath();
+  }
+
+  /* 16 mirrored wedges of one illustration -> a living kaleidoscope inside the star */
+  function kaleido(img, alpha, ox, oy, rot) {
+    if (!ready(img) || alpha <= 0) return;
+    const w = R * 1.9, h = w * img.naturalHeight / img.naturalWidth, seg = TAU / 16;
+    sx.globalAlpha = alpha;
+    for (let i = 0; i < 16; i++) {
+      sx.save();
+      if (i % 2) { sx.rotate((i + 1) * seg); sx.scale(1, -1); } else sx.rotate(i * seg);
+      sx.beginPath(); sx.moveTo(0, 0); sx.arc(0, 0, R * 1.02, -.004, seg + .004); sx.closePath(); sx.clip();
+      sx.rotate(rot);
+      sx.drawImage(img, R * .5 + ox - w / 2, R * .2 + oy - h / 2, w, h);
+      sx.restore();
+    }
+    sx.globalAlpha = 1;
+  }
+
+  /* ribbons hanging from the star, colours taken from the book illustrations */
+  const RIBBONS = ['#f2c14e', '#5b8fd6', '#e9a3b8', '#7fae6e', '#d7262e'];
+  function ribbons(t) {
+    const n = 26, L = R * 1.05;
+    RIBBONS.forEach((col, j) => {
+      const k = j - 2, ph = j * 1.3, left = [], right = [];
+      for (let s = 0; s <= n; s++) {
+        const u = s / n, y = R * .3 + u * L;
+        const x = k * R * .045 + k * u * R * .13 + Math.sin(t * 1.5 + ph - u * 4.2) * u * R * .11 - Math.tanh(spinV / 3) * u * u * R * .35;
+        const hw = R * .028 * (.35 + .65 * Math.abs(Math.cos(t * 1.9 + ph - u * 5.5))); // twist
+        left.push([x - hw, y]); right.push([x + hw, y]);
+      }
+      sx.beginPath(); left.forEach(p => sx.lineTo(p[0], p[1])); right.reverse().forEach(p => sx.lineTo(p[0], p[1])); sx.closePath();
+      sx.fillStyle = col; sx.globalAlpha = .92; sx.fill(); sx.globalAlpha = 1;
+    });
+  }
+
+  /* ---------- spin physics: drag to spin, it settles back to a slow turn ---------- */
+  const BASE = RM ? 0 : .12;
+  let theta = 0, spinV = BASE, cur = 4, next = -1, mix = 0, lastSwap = 0, intro = -1;
+  const spinBtn = document.getElementById('spin'), hint = document.querySelector('.hint');
+  let drag = null;
+  const angleAt = e => Math.atan2(e.clientY - (starRect.top + cy / dpr), e.clientX - (starRect.left + cx / dpr));
+  spinBtn.addEventListener('pointerdown', e => {
+    starRect = star.getBoundingClientRect();
+    drag = { a: angleAt(e), t: performance.now(), moved: 0, x: e.clientX, y: e.clientY };
+    spinBtn.setPointerCapture(e.pointerId);
+  });
+  spinBtn.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const a = angleAt(e), now = performance.now();
+    let da = a - drag.a; if (da > Math.PI) da -= TAU; if (da < -Math.PI) da += TAU;
+    const dt = Math.max(now - drag.t, 8) / 1000;
+    theta += da; spinV = spinV * .4 + (da / dt) * .6;
+    drag.a = a; drag.t = now; drag.moved += Math.hypot(e.clientX - drag.x, e.clientY - drag.y); drag.x = e.clientX; drag.y = e.clientY;
+    hint.style.opacity = 0;
+  });
+  const endDrag = () => { if (drag && drag.moved < 6) showNext(); drag = null; };
+  spinBtn.addEventListener('pointerup', endDrag);
+  spinBtn.addEventListener('pointercancel', () => { drag = null; });
+  spinBtn.addEventListener('click', e => { if (e.detail === 0) { spinV += 5; showNext(); } }); // keyboard
+  function showNext() { if (next < 0) { next = (cur + 1) % ills.length; mix = 0; } }
+  function setCaption(i) { chapterEl.style.opacity = 0; setTimeout(() => { chapterEl.textContent = 'Розділ ' + CHAPTERS[i]; chapterEl.style.opacity = 1; }, 300); }
+
+  let mx = 0, my = 0; // pointer, -1..1
+  const parts = [];
+  addEventListener('pointermove', e => {
+    mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1;
+    if (!RM && e.pointerType === 'mouse' && parts.length < 420 && Math.random() < .5)
+      parts.push({ x: e.clientX, y: e.clientY, vx: (Math.random() - .5) * 30, vy: (Math.random() - .5) * 30 - 10, life: 0, max: .7 + Math.random() * .8, s: 6 + Math.random() * 10, tw: Math.random() * TAU });
+  });
+
+  /* ambient gold dust drifting across the whole page */
+  const AMB = RM ? 0 : Math.round(Math.min(90, innerWidth * innerHeight / 14000));
+  const amb = Array.from({ length: AMB }, () => ({ x: Math.random(), y: Math.random(), s: 3 + Math.random() * 9, sp: .004 + Math.random() * .012, tw: Math.random() * TAU, f: .6 + Math.random() * 1.6 }));
+
+  let last = performance.now(), t = 0;
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, .05); last = now; t += RM ? 0 : dt;
+
+    if (intro < 0 && ready(ills[cur])) { intro = t; setCaption(cur); }
+    if (intro >= 0 && !RM) for (let i = 0; i < RAYS; i++) {
+      const p = Math.min(Math.max((t - intro - i * .09) / .9, 0), 1), c1 = 1.9, c3 = c1 + 1;
+      grow[i] = p === 0 ? 0 : 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); // ease-out-back unfold
+    }
+    if (!drag) { theta += spinV * dt; spinV += (BASE - spinV) * (1 - Math.exp(-dt * .7)); }
+    if (!RM && intro >= 0 && next < 0 && t - lastSwap > 9) showNext();
+    if (next >= 0) { mix += dt / (RM ? .01 : 1.6); if (mix >= 1) { cur = next; next = -1; mix = 0; lastSwap = t; setCaption(cur); } }
+
+    /* --- star --- */
+    sx.setTransform(1, 0, 0, 1, 0, 0); sx.clearRect(0, 0, star.width, star.height);
+    sx.translate(cx, cy);
+    const G = grow.reduce((a, b) => a + b) / RAYS;
+    const gr = Math.min(R * 1.35, cy, cx); // glow must fade out inside the canvas, or its edge shows
+    const glow = sx.createRadialGradient(0, 0, R * .1, 0, 0, gr);
+    glow.addColorStop(0, `rgba(255,170,60,${.32 * G})`); glow.addColorStop(1, 'rgba(255,120,30,0)');
+    sx.fillStyle = glow; sx.beginPath(); sx.arc(0, 0, gr, 0, TAU); sx.fill();
+    if (G > .05) ribbons(t);
+
+    sx.rotate(theta);
+    sx.save(); starPath(sx, R); sx.clip();
+    sx.fillStyle = '#3a0406'; sx.fill();
+    const ox = R * (.38 * Math.sin(t * .07 + theta * .5) + .06 * mx), oy = R * (.14 * Math.cos(t * .05 + theta * .35) + .04 * my), rot = .22 * Math.sin(t * .03 + theta * .25);
+    kaleido(ills[cur], 1, ox, oy, rot);
+    if (next >= 0) kaleido(ills[next], mix * mix * (3 - 2 * mix), ox, oy, rot);
+    // folded-paper relief: one half of every ray in shade
+    sx.fillStyle = 'rgba(30,0,0,.16)';
+    for (let i = 0; i < RAYS; i++) {
+      const a = i * 2 * A - Math.PI / 2;
+      sx.beginPath(); sx.moveTo(0, 0); sx.lineTo(Math.cos(a) * R * grow[i], Math.sin(a) * R * grow[i]);
+      sx.lineTo(Math.cos(a + A) * R * INNER, Math.sin(a + A) * R * INNER); sx.fill();
+    }
+    sx.restore();
+
+    sx.lineJoin = 'round';
+    sx.strokeStyle = '#f5c35a'; sx.lineWidth = Math.max(1.5 * dpr, R * .012); starPath(sx, R); sx.stroke();
+    sx.globalAlpha = .55; sx.lineWidth = Math.max(1 * dpr, R * .006); starPath(sx, R * .6); sx.stroke(); sx.globalAlpha = 1;
+
+    // hub: the star from the deck, turning the other way
+    if (G > .05) {
+      const hr = R * .2 * G;
+      sx.beginPath(); sx.arc(0, 0, hr, 0, TAU); sx.fillStyle = '#5c0609'; sx.fill();
+      sx.lineWidth = Math.max(1.5 * dpr, R * .01); sx.strokeStyle = '#f5c35a'; sx.stroke();
+      if (ready(hub)) { sx.save(); sx.rotate(-theta * 2.2); const hs = hr * 1.75; sx.drawImage(hub, -hs / 2, -hs / 2, hs, hs * hub.naturalHeight / hub.naturalWidth); sx.restore(); }
+    }
+
+    /* --- sparkles thrown off the tips when the star spins --- */
+    if (!RM && intro >= 0) {
+      const ex = starRect.left + cx / dpr, ey = starRect.top + cy / dpr, Rc = R / dpr;
+      let emit = Math.abs(spinV) * dt * 14 + dt * 2;
+      while (emit > 0 && parts.length < 420) {
+        if (Math.random() > emit) break; emit -= 1;
+        const i = Math.floor(Math.random() * RAYS), a = i * 2 * A - Math.PI / 2 + theta;
+        const px = ex + Math.cos(a) * Rc, py = ey + Math.sin(a) * Rc, v = spinV * Rc;
+        parts.push({ x: px, y: py, vx: -Math.sin(a) * v + Math.cos(a) * 20, vy: Math.cos(a) * v + Math.sin(a) * 20, life: 0, max: 1 + Math.random() * 1.4, s: 6 + Math.random() * 14, tw: Math.random() * TAU });
+      }
+    }
+
+    dx.setTransform(dpr, 0, 0, dpr, 0, 0); dx.clearRect(0, 0, innerWidth, innerHeight);
+    dx.globalCompositeOperation = 'lighter';
+    for (const p of amb) {
+      p.y += p.sp * dt; p.x += Math.sin(t * .3 + p.tw) * .0006; if (p.y > 1.02) { p.y = -.02; p.x = Math.random(); }
+      const a = .25 + .75 * Math.pow(Math.max(0, Math.sin(t * p.f + p.tw)), 3);
+      dx.globalAlpha = a * .8; dx.drawImage(sprite, p.x * innerWidth - p.s / 2, p.y * innerHeight - p.s / 2, p.s, p.s);
+    }
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const p = parts[i]; p.life += dt;
+      if (p.life > p.max) { parts.splice(i, 1); continue; }
+      p.vx *= .985; p.vy = p.vy * .985 + 18 * dt; p.x += p.vx * dt; p.y += p.vy * dt;
+      const k = 1 - p.life / p.max, s = p.s * (.6 + .4 * Math.sin(p.tw + p.life * 9));
+      dx.globalAlpha = Math.min(1, k * 1.4); dx.drawImage(sprite, p.x - s / 2, p.y - s / 2, s, s);
+    }
+    dx.globalAlpha = 1; dx.globalCompositeOperation = 'source-over';
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
