@@ -55,7 +55,7 @@
   .theme { font: italic 500 clamp(22px, 2.2vw, 28px)/1.25 "Cormorant Garamond", serif; color: var(--cream); max-width: 26ch; }
 
   .premiere { border-top: 1px solid rgba(245, 195, 90, .35); padding-top: clamp(18px, 2.6vh, 28px); }
-  .premiere .label { font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .premiere .label, .book small, .hint { font: italic 500 19px/1.3 "Cormorant Garamond", serif; color: var(--muted); }
   .date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 .35em; margin-top: 6px; }
   .date b { font: italic 600 clamp(56px, 6.4vw, 92px)/1 "Cormorant Garamond", serif; color: var(--gold); letter-spacing: -.01em; }
   .date span { font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; }
@@ -63,7 +63,7 @@
   .countdown strong { color: var(--cream); font-weight: 600; }
 
   .book { display: block; text-decoration: none; border-top: 1px solid rgba(245, 195, 90, .35); padding-top: clamp(18px, 2.6vh, 28px); }
-  .book small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .book small { display: block; }
   .book span { display: inline-block; margin-top: 4px; font: italic 600 clamp(28px, 2.6vw, 36px)/1.15 "Cormorant Garamond", serif; transition: color .3s; }
   .book span::after { content: "→"; display: inline-block; margin-left: .3em; font-style: normal; color: var(--gold); transition: transform .3s; }
   .book:hover span, .book:focus-visible span { color: var(--gold); }
@@ -80,8 +80,8 @@
   #star { display: block; width: 100%; aspect-ratio: 1 / 1.02; }
   .caption { text-align: center; margin-top: -2%; min-height: 3.2em; }
   .caption .ch { font: italic 500 19px/1.3 "Cormorant Garamond", serif; transition: opacity .6s; }
-  .caption .credit { font-size: 12px; color: var(--muted); letter-spacing: .04em; margin-top: 2px; }
-  .hint { position: absolute; top: 2%; right: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: opacity 1s; }
+  .caption .credit { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .hint { position: absolute; top: 2%; right: 0; transition: opacity 1s; }
 
   /* entrance: text rises in, the calligraphy is "written" left to right */
   .rise { opacity: 0; transform: translateY(14px); animation: rise 1s cubic-bezier(.2, .7, .2, 1) forwards; }
