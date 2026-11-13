@@ -62,19 +62,12 @@
   .countdown { margin-top: 8px; color: var(--muted); font-size: 15px; }
   .countdown strong { color: var(--cream); font-weight: 600; }
 
-  .book {
-    display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: center;
-    text-decoration: none; padding: 14px 18px 14px 14px;
-    border: 1px solid rgba(245, 195, 90, .35); border-radius: 14px;
-    background: rgba(42, 2, 4, .35);
-    transition: border-color .3s, background .3s, transform .3s;
-  }
-  .book:hover, .book:focus-visible { border-color: var(--gold); background: rgba(42, 2, 4, .6); transform: translateY(-2px); }
-  .book img { grid-row: span 2; width: 44px; height: 44px; }
-  .book small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-soft); font-weight: 600; }
-  .book span { font-size: 15px; }
-  .book span::after { content: " →"; color: var(--gold); transition: margin .3s; }
-  .book:hover span::after { margin-left: 4px; }
+  .book { display: block; text-decoration: none; border-top: 1px solid rgba(245, 195, 90, .35); padding-top: clamp(18px, 2.6vh, 28px); }
+  .book small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .book span { display: inline-block; margin-top: 4px; font: italic 600 clamp(28px, 2.6vw, 36px)/1.15 "Cormorant Garamond", serif; transition: color .3s; }
+  .book span::after { content: "→"; display: inline-block; margin-left: .3em; font-style: normal; color: var(--gold); transition: transform .3s; }
+  .book:hover span, .book:focus-visible span { color: var(--gold); }
+  .book:hover span::after, .book:focus-visible span::after { transform: translateX(6px); }
 
   footer { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; font-size: 14px; color: var(--muted); }
   footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
@@ -142,9 +135,8 @@
     </section>
 
     <a class="book rise" style="animation-delay:1.45s" href="https://stretovych.com.ua/product/rodynne-rizdvo/" target="_blank" rel="noopener">
-      <img src="assets/star.webp" alt="" width="44" height="44">
       <small>Книга вже у продажу</small>
-      <span>«Родинне Різдво для всіх» · 120+ традицій</span>
+      <span>«Родинне Різдво для всіх»</span>
     </a>
 
     <footer class="rise" style="animation-delay:1.7s">
