@@ -7,10 +7,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Родинне Різдво</title>
-<meta name="description" content="Родинне Різдво: Різдво у колі рідних — велика родина України. Прем'єра шоу 24 грудня на 1+1. Проєкт Фундації Катерини Осадчої.">
+<meta name="description" content="Родинне Різдво: Різдво у колі рідних — велика родина України. Прем'єра шоу 24 грудня на 1+1 Україна. Проєкт Фундації Катерини Осадчої.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Родинне Різдво">
-<meta property="og:description" content="Прем'єра шоу 24 грудня на 1+1. Різдво у колі рідних — велика родина України.">
+<meta property="og:description" content="Прем'єра шоу 24 грудня на 1+1 Україна. Різдво у колі рідних — велика родина України.">
 <meta property="og:image" content="https://rodynnerizdvo.com/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2a0204">
@@ -136,7 +136,7 @@
 
     <section class="premiere rise" style="animation-delay:1.2s" aria-label="Прем'єра шоу">
       <p class="label">Прем'єра шоу</p>
-      <p class="date"><b>24 грудня</b><span>на 1+1</span></p>
+      <p class="date"><b>24 грудня</b><span>на 1+1&nbsp;Україна</span></p>
       <p class="countdown" id="countdown"></p>
     </section>
 
@@ -172,7 +172,7 @@
   const days = Math.round((Date.UTC(now.getUTCFullYear(), 11, 24) - kyivToday) / 864e5);
   const cd = document.getElementById('countdown');
   if (days > 0) cd.innerHTML = `До прем'єри ${plural(days, 'залишився', 'залишилось', 'залишилось')} <strong>${days} ${plural(days, 'день', 'дні', 'днів')}</strong>`;
-  else if (days === 0) cd.innerHTML = '<strong>Сьогодні ввечері на 1+1</strong>';
+  else if (days === 0) cd.innerHTML = '<strong>Сьогодні ввечері на 1+1&nbsp;Україна</strong>';
   else cd.remove();
 
   /* ---------- assets ---------- */
