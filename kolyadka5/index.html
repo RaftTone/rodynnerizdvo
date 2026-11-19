@@ -18,18 +18,23 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2a0204">
 <link rel="icon" href="../assets/star.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; }
   html { background: #2a0204; }
   body {
     min-height: 100vh; min-height: 100svh;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: clamp(18px, 3vh, 32px);
     padding: clamp(20px, 4vw, 48px) clamp(16px, 4vw, 48px);
     color: #fff4e3;
     background: radial-gradient(90vmax 90vmax at 50% 45%, #8a1014 0%, #5a0709 38%, #2a0204 75%) fixed;
   }
+  h1 { font: italic 600 clamp(30px, 4.2vw, 56px)/1.1 "Cormorant Garamond", serif; text-align: center; }
   .player {
-    width: min(100%, 1400px, calc((100svh - 2 * clamp(20px, 4vw, 48px)) * 16 / 9));
+    width: min(100%, 1400px, calc((100svh - 2 * clamp(20px, 4vw, 48px) - 110px) * 16 / 9));
     min-width: min(100%, 320px);
     aspect-ratio: 16 / 9;
     background: #000;
@@ -42,6 +47,7 @@
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5J3N689" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<h1>В неділю рано сонце сходило</h1>
 <div class="player">
   <!-- shortcut: Google Drive player (max 1080p, quality picked by Drive, may throttle on heavy traffic); move to Bunny/Cloudflare Stream if it gets popular -->
   <iframe src="https://drive.google.com/file/d/1a9S5I0lIYphENTTMtY3mLHJmbcVHPUKQ/preview" title="В неділю рано сонце сходило" allow="autoplay; fullscreen" allowfullscreen></iframe>
